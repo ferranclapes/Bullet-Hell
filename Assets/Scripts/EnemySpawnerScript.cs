@@ -9,6 +9,9 @@ public class EnemySpawnerScript : MonoBehaviour
     [Header("Spawn Area")]
     [SerializeField] private float xRange = 3f;
     [SerializeField] private float yRange = 3f;
+
+    [SerializeField] private Transform enemiesParent;
+    [SerializeField] private Transform pickableParent;
     private float timer = 0f;
     // Start is called before the first frame update
     void Start()
@@ -34,6 +37,8 @@ public class EnemySpawnerScript : MonoBehaviour
 
         Vector3 spawnPosition = transform.position + new Vector3(xOffset, yOffset, 0f);
 
-        Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        enemy.transform.SetParent(enemiesParent);
+        enemy.GetComponent<EnemyScript>().setPickableParent(pickableParent);
     }
 }

@@ -6,6 +6,8 @@ public class ShooterScript : MonoBehaviour
 {
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float shootCooldown = 0.5f;
+
+    [SerializeField] private Transform bulletsParent;
     private float nextShootIn = 0f;
 
     // Start is called before the first frame update
@@ -28,7 +30,8 @@ public class ShooterScript : MonoBehaviour
 
             Quaternion rotation = Quaternion.Euler(0f, 0f, angle);
 
-            Instantiate(bulletPrefab, transform.position, rotation);
+            GameObject bullet = Instantiate(bulletPrefab, transform.position, rotation);
+            bullet.transform.SetParent(bulletsParent);
             
             nextShootIn = shootCooldown;
         }

@@ -7,6 +7,8 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] private float health = 10f;
     [SerializeField] private float moveSpeed = 2f;
     [SerializeField] private float damage = 10f;
+    [SerializeField] private GameObject dropPrefab;
+    private Transform pickableParent;
     private Transform playerTransform;
     private Rigidbody2D rb;
     // Start is called before the first frame update
@@ -21,6 +23,11 @@ public class EnemyScript : MonoBehaviour
     {
         if (health <= 0)
         {
+            if (dropPrefab != null)
+            {
+                GameObject drop =Instantiate(dropPrefab, transform.position, Quaternion.identity);
+                drop.transform.parent = pickableParent;
+            }
             Destroy(gameObject);
         }
     }
@@ -43,5 +50,10 @@ public class EnemyScript : MonoBehaviour
             other.GetComponent<PlayerStatsScript>().TakeDamage(damage);
             Destroy(gameObject);
         }
+    }
+
+    public void setPickableParent(Transform parent)
+    {
+        pickableParent = parent;
     }
 }

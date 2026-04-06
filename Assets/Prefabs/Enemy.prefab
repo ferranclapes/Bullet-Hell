@@ -174,3 +174,5 @@ MonoBehaviour:
   health: 10
   moveSpeed: 0.7
   damage: 10
+  dropPrefab: {fileID: 2349446139359004870, guid: e8f5e539806d2a04ea3953ddc0e9e007, type: 3}
+  pickableParent: {fileID: 0}
