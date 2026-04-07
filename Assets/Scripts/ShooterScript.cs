@@ -8,13 +8,12 @@ public class ShooterScript : MonoBehaviour
     [SerializeField] private float shootCooldown = 0.5f;
 
     [SerializeField] private Transform bulletsParent;
+
+    [Header("Bullets Stats")]
+    [SerializeField] private float bulletDamage = 5f;
+    [SerializeField] private float bulletSpeed = 5f;
     private float nextShootIn = 0f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -32,8 +31,26 @@ public class ShooterScript : MonoBehaviour
 
             GameObject bullet = Instantiate(bulletPrefab, transform.position, rotation);
             bullet.transform.SetParent(bulletsParent);
+            BulletScript bulletScript = bullet.GetComponent<BulletScript>();
+            bulletScript.SetDamage(bulletDamage);
+            bulletScript.SetSpeed(bulletSpeed);
             
             nextShootIn = shootCooldown;
         }
+    }
+
+    public void IncreaseBulletDamage(float percentage)
+    {
+        bulletDamage += bulletDamage * (percentage / 100f);
+    }
+
+    public void IncreaseBulletSpeed(float percentage)
+    {
+        bulletSpeed += bulletSpeed * (percentage / 100f);
+    }
+
+    public void IncreaseShootingSpeed(float percentage)
+    {
+        shootCooldown -= shootCooldown * (percentage / 100f);
     }
 }

@@ -27,4 +27,9 @@ public class PlayerMovementScript : MonoBehaviour
         Vector2 movement = new Vector2(horizontal, vertical).normalized;
         rb.velocity = movement * moveSpeed;
     }
+
+    public void IncreasePlayerSpeed(float percentage)
+    {
+        moveSpeed += moveSpeed * (percentage / 100f);
+    }
 }

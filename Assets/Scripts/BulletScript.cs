@@ -41,4 +41,15 @@ public class BulletScript : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void SetDamage(float newDamage)
+    {
+        damage = newDamage;
+    }
+    public void SetSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+        rb = GetComponent<Rigidbody2D>();
+        rb.velocity = transform.up * speed;
+    }
 }

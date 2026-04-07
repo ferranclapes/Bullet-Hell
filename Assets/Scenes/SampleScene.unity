@@ -320,12 +320,24 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1556224685}
         m_TargetAssemblyTypeName: LevelUpManagerScript, Assembly-CSharp
-        m_MethodName: Upgrade3Selected
+        m_MethodName: UpgradeSelected
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 218295166}
+        m_TargetAssemblyTypeName: UpgradeManagerScript, Assembly-CSharp
+        m_MethodName: UpgradeXSelected
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -395,6 +407,56 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3ebe2ea814793a489e9f824856c7bb9, type: 3}
+--- !u!1 &218295165
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 218295167}
+  - component: {fileID: 218295166}
+  m_Layer: 0
+  m_Name: UpgradeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &218295166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218295165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54770681bc9a09b47a760204c7017439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allUpgrades:
+  - {fileID: 11400000, guid: 4b0456ea4c72a734082158ec59bcb1de, type: 2}
+  - {fileID: 11400000, guid: 62171e3d5e6f4de46886eda338332eed, type: 2}
+  - {fileID: 11400000, guid: 6ccb9935ef0b9bc40a972b84641c47d9, type: 2}
+  - {fileID: 11400000, guid: 753d648ac233d8d4ba87c3260c434d93, type: 2}
+  player: {fileID: 1903592899}
+--- !u!4 &218295167
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218295165}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 383.4684, y: 283.07507, z: 2.3318949}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &219288516
 GameObject:
   m_ObjectHideFlags: 0
@@ -1852,8 +1914,20 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1556224685}
         m_TargetAssemblyTypeName: LevelUpManagerScript, Assembly-CSharp
-        m_MethodName: Upgrade1Selected
+        m_MethodName: UpgradeSelected
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 218295166}
+        m_TargetAssemblyTypeName: UpgradeManagerScript, Assembly-CSharp
+        m_MethodName: UpgradeXSelected
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2119,12 +2193,24 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1556224685}
         m_TargetAssemblyTypeName: LevelUpManagerScript, Assembly-CSharp
-        m_MethodName: Upgrade2Selected
+        m_MethodName: UpgradeSelected
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 218295166}
+        m_TargetAssemblyTypeName: UpgradeManagerScript, Assembly-CSharp
+        m_MethodName: UpgradeXSelected
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2163,6 +2249,7 @@ MonoBehaviour:
   upgrade1: {fileID: 1970200298}
   upgrade2: {fileID: 1613948072}
   upgrade3: {fileID: 814314811}
+  upgradeManager: {fileID: 218295166}
 --- !u!4 &1556224686
 Transform:
   m_ObjectHideFlags: 0
@@ -2608,6 +2695,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2849952391781889601, guid: 270bf703b4311074da4fed3ffd12ea1a, type: 3}
   shootCooldown: 0.5
   bulletsParent: {fileID: 1791864390}
+  bulletDamage: 5
+  bulletSpeed: 5
 --- !u!114 &1903592903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3076,3 +3165,4 @@ SceneRoots:
   - {fileID: 2051207183}
   - {fileID: 1927672076}
   - {fileID: 1556224686}
+  - {fileID: 218295167}

@@ -11,6 +11,8 @@ public class LevelUpManagerScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI upgrade1;
     [SerializeField] private TextMeshProUGUI upgrade2;
     [SerializeField] private TextMeshProUGUI upgrade3;
+
+    [SerializeField] private UpgradeManagerScript upgradeManager;
     
     void Start()
     {
@@ -21,9 +23,10 @@ public class LevelUpManagerScript : MonoBehaviour
         Time.timeScale = 0f;
         fromToLevelText.text =  (newLevel-1).ToString() + " -> " + newLevel.ToString();
 
-        upgrade1.text = "Upgrade 1";
-        upgrade2.text = "Upgrade 2";
-        upgrade3.text = "Upgrade 3";
+        List<UpgradeScript> selectedUpgrades = upgradeManager.Get3Upgrades();
+        upgrade1.text = selectedUpgrades[0].upgradeName;
+        upgrade2.text = selectedUpgrades[1].upgradeName;
+        upgrade3.text = selectedUpgrades[2].upgradeName;
 
         levelUpScreen.SetActive(true);
     }
@@ -34,21 +37,8 @@ public class LevelUpManagerScript : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    public void Upgrade1Selected()
+    public void UpgradeSelected()
     {
-        Debug.Log("Upgrade 1 Selected");
-        HideLevelUpScreen();
-    }
-
-    public void Upgrade2Selected()
-    {
-        Debug.Log("Upgrade 2 Selected");
-        HideLevelUpScreen();
-    }
-
-    public void Upgrade3Selected()
-    {
-        Debug.Log("Upgrade 3 Selected");
         HideLevelUpScreen();
     }
 }
