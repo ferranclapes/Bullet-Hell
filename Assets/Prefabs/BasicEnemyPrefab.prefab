@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5395394663519146613}
   - component: {fileID: 3352884660249186367}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: BasicEnemyPrefab
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -171,8 +171,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8df15d3d82f95034dbe80dfbc2018a57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
-  moveSpeed: 0.7
-  damage: 10
   dropPrefab: {fileID: 2349446139359004870, guid: e8f5e539806d2a04ea3953ddc0e9e007, type: 3}
-  pickableParent: {fileID: 0}

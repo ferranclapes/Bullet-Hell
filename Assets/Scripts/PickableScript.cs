@@ -10,16 +10,11 @@ public enum PickableType
 public class PickableScript : MonoBehaviour
 {
     [SerializeField] private PickableType type;
+    [SerializeField] private float value;
     [SerializeField] private float magnetStrength = 0.01f;
     private bool inRange = false;
     private Transform player;
     private PlayerStatsScript playerStats;
-    private Rigidbody2D rb;
-    // Start is called before the first frame update
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -27,9 +22,9 @@ public class PickableScript : MonoBehaviour
         if (inRange)
         {
             transform.position = Vector3.Lerp(transform.position, player.position, magnetStrength);
-            if (Vector3.Distance(transform.position, player.position) < 0.1f)
+            if (Vector3.Distance(transform.position, player.position) < 0.5f)
             {
-                playerStats.PickUp(type);
+                playerStats.PickUp(type, value);
                 Destroy(gameObject);
             }
         }
@@ -43,5 +38,10 @@ public class PickableScript : MonoBehaviour
             player = other.gameObject.transform;
             playerStats = other.gameObject.GetComponent<PlayerStatsScript>();
         }
+    }
+
+    public void SetValue(float newValue)
+    {
+        value = newValue;
     }
 }

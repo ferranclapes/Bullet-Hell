@@ -44,7 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9755fdf8f72253f43b000082a5768e36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 8100583465484246682, guid: 5c9b355a7878afb4cb31838046a1a53c, type: 3}
+  enemyPool:
+  - {fileID: 11400000, guid: 94d0c973d0735a44586af5dbc892dd07, type: 2}
+  - {fileID: 11400000, guid: 109b9ee137286f340813f238a2318e23, type: 2}
   spawnInterval: 2
   xRange: 3
   yRange: 3
+  enemiesParent: {fileID: 0}
+  pickableParent: {fileID: 0}

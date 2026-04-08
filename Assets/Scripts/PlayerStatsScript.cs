@@ -6,7 +6,7 @@ public class PlayerStatsScript : MonoBehaviour
 {
     private float health;
     private float maxHealth = 100f;
-    private int xp = 0;
+    private float xp = 0;
     private int currentLevel = 1;
     private int xpToNextLevel = 5;
     private int xpLastLevelUp = 0;
@@ -45,17 +45,20 @@ public class PlayerStatsScript : MonoBehaviour
         //Todo: Implement Game Over
     }
 
-    public void PickUp(PickableType type)
+    public void PickUp(PickableType type, float value)
     {
         switch (type)
         {
             case PickableType.XP:
-                xp++;
+                xp += value;
                 uiManager.UpdateXP(xp - xpLastLevelUp, xpToNextLevel);
                 if (xp >= xpToNextLevel)
                 {
                     LevelUp();
                 }
+                break;
+            case PickableType.Health:
+                Heal(value);
                 break;
         }
     }

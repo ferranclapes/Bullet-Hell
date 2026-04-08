@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
-    [SerializeField] private float health = 10f;
-    [SerializeField] private float moveSpeed = 2f;
-    [SerializeField] private float damage = 10f;
+    private EnemyData enemyData;
+    private float currentHealth;
+    private float currentSpeed;
     [SerializeField] private GameObject dropPrefab;
     private Transform pickableParent;
     private Transform playerTransform;
     private Rigidbody2D rb;
     // Start is called before the first frame update
+    
+    public void Initialize(EnemyData data)
+    {
+        enemyData = data;
+        currentHealth = enemyData.maxHealth;
+        currentSpeed = enemyData.moveSpeed;
+    }
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -21,11 +28,12 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health <= 0)
+        if (currentHealth <= 0)
         {
             if (dropPrefab != null)
             {
                 GameObject drop =Instantiate(dropPrefab, transform.position, Quaternion.identity);
+                drop.GetComponent<PickableScript>().SetValue(enemyData.xpToDrop);
                 drop.transform.parent = pickableParent;
             }
             Destroy(gameObject);
@@ -34,20 +42,26 @@ public class EnemyScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector2 direction = (playerTransform.position - transform.position).normalized;
-        rb.velocity = direction * moveSpeed;
+        Vector2 direction = (playerTransform.position - transform.position);
+        if (direction.magnitude > 15f)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        direction.Normalize();
+        rb.velocity = direction * currentSpeed;
     }
 
     public void TakeDamage(float damage)
     {
-        health -= damage;
+        currentHealth -= damage;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<PlayerStatsScript>().TakeDamage(damage);
+            other.GetComponent<PlayerStatsScript>().TakeDamage(enemyData.damage);
             Destroy(gameObject);
         }
     }
