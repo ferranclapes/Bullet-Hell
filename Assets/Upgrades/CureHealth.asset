@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b66eae45cf1ba7644a64ff33d98ccc06, type: 3}
-  m_Name: BulletDamage
+  m_Name: CureHealth
   m_EditorClassIdentifier: 
-  upgradeName: Bullet Damage
-  description: Increase the damage of the bullets by 15%
-  icon: {fileID: 21300000, guid: 0314ffb19b9256447a32d66b5165be00, type: 3}
+  upgradeName: Cure
+  description: Regain 35 points of health
+  icon: {fileID: 21300000, guid: 27a09766a08ebeb43be2aa79c75019ae, type: 3}
   weight: 1
-  upgradeType: 0
-  upgradePercentage: 15
+  upgradeType: 4
+  upgradePercentage: 35
