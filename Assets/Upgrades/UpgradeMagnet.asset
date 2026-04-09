@@ -15,6 +15,6 @@ MonoBehaviour:
   upgradeName: Upgrade Magnet
   description: Increase the range of the magnet by 20%
   icon: {fileID: 21300000, guid: 253a0754d04db944aa1c220ae992cddc, type: 3}
-  weight: 50
+  weight: 0
   upgradeType: 7
   upgradePercentage: 20

@@ -80,11 +80,29 @@ public class UpgradeManagerScript : MonoBehaviour
                 playerStatsScript.IncreaseMaxHealth(selectedUpgrade.upgradePercentage);
                 break;
             case UpgradeType.Magnet:
-                playerStatsScript.ActivateMagnet(selectedUpgrade.upgradePercentage);
+                GotMagnet(selectedUpgrade);
                 break;
             case UpgradeType.UpgradeMagnet:
                 playerStatsScript.IncreaseMagnetRange(selectedUpgrade.upgradePercentage);
                 break;
         }
     }
+
+    private void GotMagnet(UpgradeScript magnetUpgrade)
+    {
+        playerStatsScript.ActivateMagnet(magnetUpgrade.upgradePercentage);
+
+        magnetUpgrade.weight = 0f;
+
+        foreach (UpgradeScript upgrade in allUpgrades)
+        {
+            if (upgrade.upgradeType == UpgradeType.UpgradeMagnet)
+            {
+                upgrade.weight = 1f;
+                break;
+            }
+        }
+    }
+
+    //?Maybe store the upgrades in a dictionary with the type as key for faster access?
 }
