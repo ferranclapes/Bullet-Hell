@@ -73,6 +73,10 @@ public class PlayerStatsScript : MonoBehaviour
         levelUpManager.ShowLevelUpScreen(currentLevel);
     }
 
+    public int GetCurrentLevel()
+    {
+        return currentLevel;
+    }
     public void Heal(float healAmount)
     {
         health += healAmount;

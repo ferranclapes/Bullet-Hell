@@ -14,6 +14,7 @@ public class EnemyData : ScriptableObject
 
     [Header("Base Stats")]
     public float maxHealth;
+    public bool healthToLevel;
     public float moveSpeed;
     public int damage;
     public float xpToDrop;

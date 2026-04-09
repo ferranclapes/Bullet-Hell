@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c6981cfa7c27c54290251436f65dfa1, type: 3}
-  m_Name: 1
+  m_Name: GlowingBatData
   m_EditorClassIdentifier: 
-  enemyName: Slime
-  prefab: {fileID: 8100583465484246682, guid: 5c9b355a7878afb4cb31838046a1a53c, type: 3}
+  enemyName: Glowing Bat
+  prefab: {fileID: 6346277166347811671, guid: 44506bfb790ef124680fce776b5f883a, type: 3}
   spawnWeight: 1
-  maxHealth: 5
+  maxHealth: 50
+  healthToLevel: 1
   moveSpeed: 1.4
-  damage: 5
-  xpToDrop: 1
+  damage: 10
+  xpToDrop: 30

@@ -11,18 +11,30 @@ public class EnemyScript : MonoBehaviour
     private Transform pickableParent;
     private Transform playerTransform;
     private Rigidbody2D rb;
+
+    [Header("Damage Indicator")]
+    [SerializeField] private GameObject damageTextPrefab;
     // Start is called before the first frame update
     
     public void Initialize(EnemyData data)
     {
         enemyData = data;
-        currentHealth = enemyData.maxHealth;
+
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        if (enemyData.healthToLevel)
+        {
+            currentHealth = enemyData.maxHealth + (enemyData.maxHealth * (playerTransform.GetComponent<PlayerStatsScript>().GetCurrentLevel() - 1));
+        }
+        else
+        {
+            currentHealth = enemyData.maxHealth;
+        }
+
         currentSpeed = enemyData.moveSpeed;
     }
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
@@ -55,6 +67,8 @@ public class EnemyScript : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        DamageTextScript damageText = Instantiate(damageTextPrefab, transform.position, Quaternion.identity).GetComponent<DamageTextScript>();
+        damageText.SetDamageText(damage);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
