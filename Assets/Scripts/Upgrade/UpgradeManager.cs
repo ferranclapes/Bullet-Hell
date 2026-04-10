@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class UpgradeManagerScript : MonoBehaviour
+public class UpgradeManager : MonoBehaviour
 {
-    [SerializeField] private List<UpgradeScript> allUpgrades;
-    private List<UpgradeScript> selectedUpgrades = new List<UpgradeScript>();
+    [SerializeField] private List<Upgrade> allUpgrades;
+    private List<Upgrade> selectedUpgrades = new List<Upgrade>();
 
     [SerializeField] private GameObject player;
-    private PlayerMovementScript playerMovementScript;
-    private PlayerStatsScript playerStatsScript;
+    private PlayerMovement playerMovementScript;
+    private PlayerStats playerStatsScript;
     private WeaponManager weaponManager;
 
     // Start is called before the first frame update
@@ -22,21 +22,21 @@ public class UpgradeManagerScript : MonoBehaviour
         weaponManager = Player.Instance.weaponManager;
     }
 
-    public List<UpgradeScript> Get3Upgrades()
+    public List<Upgrade> Get3Upgrades()
     {
         selectedUpgrades.Clear();
-        List<UpgradeScript> pool = new List<UpgradeScript>(allUpgrades);
+        List<Upgrade> pool = new List<Upgrade>(allUpgrades);
 
         for (int i = 0; i < 3; i++)
         {
             if(pool.Count == 0) break;
 
             float totalWeight = 0f;
-            foreach (UpgradeScript upgrade in pool) totalWeight += upgrade.weight;
+            foreach (Upgrade upgrade in pool) totalWeight += upgrade.weight;
             float randomWeight = Random.Range(0, totalWeight);
             float cumulativeWeight = 0f;
             int index = 0;
-            foreach (UpgradeScript upgrade in pool)
+            foreach (Upgrade upgrade in pool)
             {
                 cumulativeWeight += upgrade.weight;
                 if (randomWeight <= cumulativeWeight) break;
@@ -58,7 +58,7 @@ public class UpgradeManagerScript : MonoBehaviour
 
     public void UpgradeXSelected(int index)
     {
-        UpgradeScript selectedUpgrade = selectedUpgrades[index];
+        Upgrade selectedUpgrade = selectedUpgrades[index];
 
         switch (selectedUpgrade.upgradeType)
         {
@@ -84,13 +84,13 @@ public class UpgradeManagerScript : MonoBehaviour
         }
     }
 
-    private void GotMagnet(UpgradeScript magnetUpgrade)
+    private void GotMagnet(Upgrade magnetUpgrade)
     {
         playerStatsScript.ActivateMagnet(magnetUpgrade.upgradePercentage);
 
         magnetUpgrade.weight = 0f;
 
-        foreach (UpgradeScript upgrade in allUpgrades)
+        foreach (Upgrade upgrade in allUpgrades)
         {
             if (upgrade.upgradeType == UpgradeType.UpgradeMagnet) upgrade.weight = 1f;
         }

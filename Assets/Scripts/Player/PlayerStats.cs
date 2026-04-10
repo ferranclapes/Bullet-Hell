@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStatsScript : MonoBehaviour
+public class PlayerStats : MonoBehaviour
 {
     private float health;
     private float maxHealth = 100f;
@@ -13,7 +13,7 @@ public class PlayerStatsScript : MonoBehaviour
     private bool haveMagnet = false;
     private float magnetRange = 1f;
     private CircleCollider2D magnetCollider;
-    [SerializeField] private UIManagerScript uiManager;
+    [SerializeField] private UIManager uiManager;
     [SerializeField] private LevelUpManager levelUpManager;
 
     void Start()

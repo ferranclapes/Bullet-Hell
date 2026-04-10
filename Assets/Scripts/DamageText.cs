@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class DamageTextScript : MonoBehaviour
+public class DamageText : MonoBehaviour
 {
     public TextMeshProUGUI text;
     public float lifetime = 1f;

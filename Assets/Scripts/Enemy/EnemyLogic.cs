@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyScript : MonoBehaviour
+public class EnemyLogic : MonoBehaviour
 {
     private EnemyData enemyData;
     private float currentHealth;
@@ -23,7 +23,7 @@ public class EnemyScript : MonoBehaviour
         playerTransform = Player.Instance.transform;
         if (enemyData.healthToLevel)
         {
-            currentHealth = enemyData.maxHealth + (enemyData.maxHealth * (playerTransform.GetComponent<PlayerStatsScript>().GetCurrentLevel() - 1));
+            currentHealth = enemyData.maxHealth + (enemyData.maxHealth * (playerTransform.GetComponent<PlayerStats>().GetCurrentLevel() - 1));
         }
         else
         {
@@ -45,7 +45,7 @@ public class EnemyScript : MonoBehaviour
             if (dropPrefab != null)
             {
                 GameObject drop =Instantiate(dropPrefab, transform.position, Quaternion.identity);
-                drop.GetComponent<PickableScript>().SetValue(enemyData.xpToDrop);
+                drop.GetComponent<Pickable>().SetValue(enemyData.xpToDrop);
                 drop.transform.parent = pickableParent;
             }
             Destroy(gameObject);
@@ -67,7 +67,7 @@ public class EnemyScript : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        DamageTextScript damageText = Instantiate(damageTextPrefab, transform.position, Quaternion.identity).GetComponent<DamageTextScript>();
+        DamageText damageText = Instantiate(damageTextPrefab, transform.position, Quaternion.identity).GetComponent<DamageText>();
         damageText.SetDamageText(damage);
     }
 
@@ -75,7 +75,7 @@ public class EnemyScript : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<PlayerStatsScript>().TakeDamage(enemyData.damage);
+            other.GetComponent<PlayerStats>().TakeDamage(enemyData.damage);
             Destroy(gameObject);
         }
     }

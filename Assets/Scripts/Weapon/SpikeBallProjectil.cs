@@ -41,7 +41,7 @@ public class SpikeBallProjectile : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            collision.GetComponent<EnemyScript>().TakeDamage(damage);
+            collision.GetComponent<EnemyLogic>().TakeDamage(damage);
         }
     }
 }

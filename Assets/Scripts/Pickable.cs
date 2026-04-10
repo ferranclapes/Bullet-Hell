@@ -7,14 +7,14 @@ public enum PickableType
     XP,
     Health
 }
-public class PickableScript : MonoBehaviour
+public class Pickable : MonoBehaviour
 {
     [SerializeField] private PickableType type;
     [SerializeField] private float value;
     [SerializeField] private float magnetStrength = 0.01f;
     private bool inRange = false;
     private Transform player;
-    private PlayerStatsScript playerStats;
+    private PlayerStats playerStats;
 
     void Start()
     {

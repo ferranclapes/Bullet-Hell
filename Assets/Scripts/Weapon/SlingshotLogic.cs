@@ -32,9 +32,9 @@ public class SlingshotLogic : WeaponLogic
 
         Quaternion rotation = Quaternion.Euler(0f, 0f, angle);
 
-        BulletScript bulletScript = Instantiate(data.projectilePrefab, transform.position, rotation).GetComponent<BulletScript>();
-        bulletScript.transform.parent = transform;
-        bulletScript.Initiate(data.levels[currentLevel].damage, data.levels[currentLevel].speed, data.levels[currentLevel].piercingCount);
+        SlingshotProjectile projectile = Instantiate(data.projectilePrefab, transform.position, rotation).GetComponent<SlingshotProjectile>();
+        projectile.transform.parent = transform;
+        projectile.Initiate(data.levels[currentLevel].damage, data.levels[currentLevel].speed, data.levels[currentLevel].piercingCount);
         yield return new WaitForSeconds(data.levels[currentLevel].projectileInverval);
         if (projectilesLeft > 1)
         {

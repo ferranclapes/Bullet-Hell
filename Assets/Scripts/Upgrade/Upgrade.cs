@@ -18,7 +18,7 @@ public enum UpgradeType
 
 
 [CreateAssetMenu(fileName = "NewUpgrade", menuName = "Upgrades/General Upgrade")]
-public class UpgradeScript : ScriptableObject
+public class Upgrade : ScriptableObject
 {
     public string upgradeName;
     [TextArea] public string description;

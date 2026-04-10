@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class UIManagerScript : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
     [SerializeField] private RectTransform health;
     [SerializeField] private RectTransform xp;

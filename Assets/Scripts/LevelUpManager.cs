@@ -20,7 +20,7 @@ public class LevelUpManager : MonoBehaviour
     [SerializeField] private Image upgrade3Icon;
 
 
-    [SerializeField] private UpgradeManagerScript upgradeManager;
+    [SerializeField] private UpgradeManager upgradeManager;
     
     void Start()
     {
@@ -31,7 +31,7 @@ public class LevelUpManager : MonoBehaviour
         Time.timeScale = 0f;
         fromToLevelText.text =  (newLevel-1).ToString() + " -> " + newLevel.ToString();
 
-        List<UpgradeScript> selectedUpgrades = upgradeManager.Get3Upgrades();
+        List<Upgrade> selectedUpgrades = upgradeManager.Get3Upgrades();
         if (selectedUpgrades[0].upgradeType == UpgradeType.WeaponUpgrade)
         {
             upgrade1.text = "<b>"+ selectedUpgrades[0].upgradeName+"</b>: " + Player.Instance.weaponManager.GetLevelUpDescription(selectedUpgrades[0].weaponType);

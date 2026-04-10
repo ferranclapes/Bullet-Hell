@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawnerScript : MonoBehaviour
+public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private List<EnemyData> enemyPool;
     [SerializeField] private float spawnInterval = 2f;
@@ -40,13 +40,13 @@ public class EnemySpawnerScript : MonoBehaviour
             return;
         }
         GameObject enemy = Instantiate(selectedEnemy.prefab, spawnPosition, Quaternion.identity);
-        if (enemy.TryGetComponent(out EnemyScript enemyScript))
+        if (enemy.TryGetComponent(out EnemyLogic enemyScript))
         {
             enemyScript.Initialize(selectedEnemy);
         }
 
         enemy.transform.SetParent(enemiesParent);
-        enemy.GetComponent<EnemyScript>().setPickableParent(pickableParent);
+        enemy.GetComponent<EnemyLogic>().setPickableParent(pickableParent);
     }
 
     private EnemyData GetWeightedRandomEnemy()

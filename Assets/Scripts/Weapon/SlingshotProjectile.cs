@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletScript : MonoBehaviour
+public class SlingshotProjectile : MonoBehaviour
 {
     private float speed;
     private float damage;
@@ -41,7 +41,7 @@ public class BulletScript : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            EnemyScript enemy = other.GetComponent<EnemyScript>();
+            EnemyLogic enemy = other.GetComponent<EnemyLogic>();
             if (enemy != null)
             {
                 piercingCount--;
