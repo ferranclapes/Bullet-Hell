@@ -35,6 +35,7 @@ public class EnemyLogic : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        EnemyManager.enemies.Add(this);
     }
 
     // Update is called once per frame
@@ -48,6 +49,7 @@ public class EnemyLogic : MonoBehaviour
                 drop.GetComponent<Pickable>().SetValue(enemyData.xpToDrop);
                 drop.transform.parent = pickableParent;
             }
+            EnemyManager.enemies.Remove(this);
             Destroy(gameObject);
         }
     }
@@ -57,6 +59,7 @@ public class EnemyLogic : MonoBehaviour
         Vector2 direction = (playerTransform.position - transform.position);
         if (direction.magnitude > 15f)
         {
+            EnemyManager.enemies.Remove(this);
             Destroy(gameObject);
             return;
         }
@@ -76,6 +79,7 @@ public class EnemyLogic : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             other.GetComponent<PlayerStats>().TakeDamage(enemyData.damage);
+            EnemyManager.enemies.Remove(this);
             Destroy(gameObject);
         }
     }

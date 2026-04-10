@@ -5,8 +5,10 @@ using UnityEngine;
 
 public enum WeaponType
 {
+    Boomerang,
     Slingshot,
     SpikeBall
+
 }
 public class WeaponManager : MonoBehaviour
 {

@@ -25,3 +25,15 @@ public class SlingshotLevel
     public float shootCooldown;
     public float projectileInverval;
 }
+
+[System.Serializable]
+public class BoomerangLevel
+{
+    [TextArea] public string levelDescription;
+    public float damage;
+    public float speed;
+    public float area;
+    public int projectileCount;
+    public float projectileInterval;
+    public float shootCooldown;
+}
