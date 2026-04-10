@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: SpikeBallData
+  m_EditorClassIdentifier: Assembly-CSharp::SpikeBallData
+  weaponName: Spike Ball
+  projectilePrefab: {fileID: 4763427141988111147, guid: ae219a82ddc05ca4c8eef75184a4c366, type: 3}
+  levels:
+  - levelDescription: A spike ball that orbits arround you and deals damage to the
+      enemies
+    projectileCount: 1
+    damage: 10
+    speed: 1
+    lifetime: 3
+    spawnCooldown: 3
+    spawnRadius: 1.5
+  - levelDescription: Fires one more projectile
+    projectileCount: 2
+    damage: 10
+    speed: 1
+    lifetime: 3
+    spawnCooldown: 3
+    spawnRadius: 1.5
+  - levelDescription: The spike balls orbit 25% further and 30% faster
+    projectileCount: 2
+    damage: 10
+    speed: 1.3
+    lifetime: 3
+    spawnCooldown: 3
+    spawnRadius: 1.875
+  - levelDescription: The spike balls damage increase by 10 and they last 0.5 seconds
+      longer
+    projectileCount: 2
+    damage: 20
+    speed: 1.3
+    lifetime: 3.5
+    spawnCooldown: 3
+    spawnRadius: 1.875
+  - levelDescription: Fires one more projectile
+    projectileCount: 3
+    damage: 20
+    speed: 1.3
+    lifetime: 3.5
+    spawnCooldown: 3
+    spawnRadius: 1.875
+  - levelDescription: The spike balls orbit 25% further and 30% faster
+    projectileCount: 3
+    damage: 20
+    speed: 1.96
+    lifetime: 3.5
+    spawnCooldown: 3
+    spawnRadius: 2.343
+  - levelDescription: The spike balls damage increase by 10 and they last 0.5 seconds
+      longer
+    projectileCount: 3
+    damage: 30
+    speed: 1.96
+    lifetime: 4
+    spawnCooldown: 3
+    spawnRadius: 2.343
+  - levelDescription: Fires one more projectile
+    projectileCount: 4
+    damage: 30
+    speed: 1.96
+    lifetime: 4
+    spawnCooldown: 3
+    spawnRadius: 2.343

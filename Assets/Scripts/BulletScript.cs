@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
-    [SerializeField] private float speed = 5f;
-    [SerializeField] private float damage = 5f;
+    private float speed;
+    private float damage;
+    private int piercingCount;
 
-    private float lifeTime = 20f;
+    private float lifeTime = 5f;
 
     private Rigidbody2D rb;
+
+    public void Initiate(float dm, float sp, int pier)
+    {
+        damage = dm;
+        speed = sp;
+        piercingCount = pier;
+    }
     
     // Start is called before the first frame update
     void Start()
@@ -36,20 +44,11 @@ public class BulletScript : MonoBehaviour
             EnemyScript enemy = other.GetComponent<EnemyScript>();
             if (enemy != null)
             {
+                piercingCount--;
                 enemy.TakeDamage(damage);
+                if (piercingCount < 0) Destroy(gameObject);
             }
-            Destroy(gameObject);
+            else Destroy(gameObject);
         }
-    }
-
-    public void SetDamage(float newDamage)
-    {
-        damage = newDamage;
-    }
-    public void SetSpeed(float newSpeed)
-    {
-        speed = newSpeed;
-        rb = GetComponent<Rigidbody2D>();
-        rb.velocity = transform.up * speed;
     }
 }

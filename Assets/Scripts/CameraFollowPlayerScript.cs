@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class CameraFollowPlayerScript : MonoBehaviour
 {
-    [SerializeField] private Transform playerTransform;
+    private Transform playerTransform;
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerTransform = Player.Instance.transform;
     }
 
     // Update is called once per frame

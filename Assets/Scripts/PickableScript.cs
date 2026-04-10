@@ -16,7 +16,12 @@ public class PickableScript : MonoBehaviour
     private Transform player;
     private PlayerStatsScript playerStats;
 
-    // Update is called once per frame
+    void Start()
+    {
+        player = Player.Instance.transform;
+        playerStats = Player.Instance.stats;
+    }
+
     void FixedUpdate()
     {
         if (inRange)
@@ -35,8 +40,6 @@ public class PickableScript : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             inRange = true;
-            player = other.gameObject.transform;
-            playerStats = other.gameObject.GetComponent<PlayerStatsScript>();
         }
     }
 

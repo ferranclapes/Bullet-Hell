@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UpgradeManagerScript : MonoBehaviour
@@ -8,17 +9,17 @@ public class UpgradeManagerScript : MonoBehaviour
     private List<UpgradeScript> selectedUpgrades = new List<UpgradeScript>();
 
     [SerializeField] private GameObject player;
-    private ShooterScript shooterScript;
     private PlayerMovementScript playerMovementScript;
     private PlayerStatsScript playerStatsScript;
+    private WeaponManager weaponManager;
 
     // Start is called before the first frame update
     
     void Start()
     {
-        shooterScript = player.GetComponent<ShooterScript>();
-        playerMovementScript = player.GetComponent<PlayerMovementScript>();
-        playerStatsScript = player.GetComponent<PlayerStatsScript>();
+        playerMovementScript = Player.Instance.movement;
+        playerStatsScript = Player.Instance.stats;
+        weaponManager = Player.Instance.weaponManager;
     }
 
     public List<UpgradeScript> Get3Upgrades()
@@ -61,15 +62,6 @@ public class UpgradeManagerScript : MonoBehaviour
 
         switch (selectedUpgrade.upgradeType)
         {
-            case UpgradeType.BulletDamage:
-                shooterScript.IncreaseBulletDamage(selectedUpgrade.upgradePercentage);
-                break;
-            case UpgradeType.BulletSpeed:
-                shooterScript.IncreaseBulletSpeed(selectedUpgrade.upgradePercentage);
-                break;
-            case UpgradeType.ShootingSpeed:
-                shooterScript.IncreaseShootingSpeed(selectedUpgrade.upgradePercentage);
-                break;
             case UpgradeType.PlayerSpeed:
                 playerMovementScript.IncreasePlayerSpeed(selectedUpgrade.upgradePercentage);
                 break;
@@ -85,6 +77,10 @@ public class UpgradeManagerScript : MonoBehaviour
             case UpgradeType.UpgradeMagnet:
                 playerStatsScript.IncreaseMagnetRange(selectedUpgrade.upgradePercentage);
                 break;
+            case UpgradeType.WeaponUpgrade:
+                weaponManager.UpgradeWeapon(selectedUpgrade.weaponType);
+                break;
+
         }
     }
 
@@ -96,13 +92,8 @@ public class UpgradeManagerScript : MonoBehaviour
 
         foreach (UpgradeScript upgrade in allUpgrades)
         {
-            if (upgrade.upgradeType == UpgradeType.UpgradeMagnet)
-            {
-                upgrade.weight = 1f;
-                break;
-            }
+            if (upgrade.upgradeType == UpgradeType.UpgradeMagnet) upgrade.weight = 1f;
         }
     }
-
-    //?Maybe store the upgrades in a dictionary with the type as key for faster access?
+    
 }

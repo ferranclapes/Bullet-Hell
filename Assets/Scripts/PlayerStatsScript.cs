@@ -14,7 +14,7 @@ public class PlayerStatsScript : MonoBehaviour
     private float magnetRange = 1f;
     private CircleCollider2D magnetCollider;
     [SerializeField] private UIManagerScript uiManager;
-    [SerializeField] private LevelUpManagerScript levelUpManager;
+    [SerializeField] private LevelUpManager levelUpManager;
 
     void Start()
     {

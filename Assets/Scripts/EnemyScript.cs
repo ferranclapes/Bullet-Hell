@@ -20,7 +20,7 @@ public class EnemyScript : MonoBehaviour
     {
         enemyData = data;
 
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        playerTransform = Player.Instance.transform;
         if (enemyData.healthToLevel)
         {
             currentHealth = enemyData.maxHealth + (enemyData.maxHealth * (playerTransform.GetComponent<PlayerStatsScript>().GetCurrentLevel() - 1));

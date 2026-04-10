@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpikeBallScript : MonoBehaviour
+public class SpikeBallProjectile : MonoBehaviour
 {
-    [SerializeField] private float damage = 10f;
-    [SerializeField] private float speed = 2f;
-    [SerializeField] private float lifetime = 5f;
+    private float damage;
+    private float speed;
+    private float lifetime;
     private float radius;
     private float currentAngle;
     // Start is called before the first frame update
@@ -18,7 +18,7 @@ public class SpikeBallScript : MonoBehaviour
         lifetime = lt;
         radius = rad;
 
-        currentAngle = (index / (float)total) * 2f * Mathf.PI;
+        currentAngle = index * 2f * Mathf.PI / total;
     }
 
     void Update()

@@ -241,11 +241,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bab101f401cb9740af2ab1bd516acde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 2849952391781889601, guid: 270bf703b4311074da4fed3ffd12ea1a, type: 3}
-  shootCooldown: 0.5
-  bulletsParent: {fileID: 1791864390}
-  bulletDamage: 5
-  bulletSpeed: 5
+  weaponType: 0
+  currentLevel: 0
+  data: {fileID: 11400000, guid: 477a44afee815a247a6346e85afccbb7, type: 2}
 --- !u!1 &63500357
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,14 +489,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allUpgrades:
-  - {fileID: 11400000, guid: 4b0456ea4c72a734082158ec59bcb1de, type: 2}
-  - {fileID: 11400000, guid: 62171e3d5e6f4de46886eda338332eed, type: 2}
   - {fileID: 11400000, guid: 6ccb9935ef0b9bc40a972b84641c47d9, type: 2}
-  - {fileID: 11400000, guid: 753d648ac233d8d4ba87c3260c434d93, type: 2}
   - {fileID: 11400000, guid: 783a7bc595052214593cb90dbe03ec27, type: 2}
   - {fileID: 11400000, guid: 9e1eab1c2f4a2bb48aef531dabd85d70, type: 2}
   - {fileID: 11400000, guid: fb29993365d8ca143949b98403ee3a3f, type: 2}
   - {fileID: 11400000, guid: dbe9bfff90cec924b881b12dfa10b326, type: 2}
+  - {fileID: 11400000, guid: 27ecb1a6b5749174a9b55f0606091c39, type: 2}
+  - {fileID: 11400000, guid: 77b08d8531842cd4d8fbc9006c9218ed, type: 2}
   player: {fileID: 1903592899}
 --- !u!4 &218295167
 Transform:
@@ -1116,7 +1113,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a09e7dc522ebcb4b9c0f366cccaeba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 1903592901}
 --- !u!1 &555186466
 GameObject:
   m_ObjectHideFlags: 0
@@ -1970,7 +1966,7 @@ GameObject:
   - component: {fileID: 1247854746}
   - component: {fileID: 1247854747}
   m_Layer: 0
-  m_Name: SpikeBallHolder
+  m_Name: SpikeBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2003,13 +1999,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65bd03749955a7149b7ccd987c3bc0f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spikeBallPrefab: {fileID: 4763427141988111147, guid: ae219a82ddc05ca4c8eef75184a4c366, type: 3}
-  spawnInterval: 5
-  spawnRadius: 5
-  spikeBallCount: 1
-  spikeBallDamage: 10
-  spikeBallSpeed: 2
-  spikeBallLifetime: 2
+  weaponType: 1
+  currentLevel: 0
+  data: {fileID: 11400000, guid: 114af7acd64534d408b81e47ffb86972, type: 2}
 --- !u!1 &1267724905
 GameObject:
   m_ObjectHideFlags: 0
@@ -2902,9 +2894,10 @@ GameObject:
   - component: {fileID: 1903592907}
   - component: {fileID: 1903592905}
   - component: {fileID: 1903592904}
-  - component: {fileID: 1903592902}
+  - component: {fileID: 1903592908}
   - component: {fileID: 1903592903}
   - component: {fileID: 1903592906}
+  - component: {fileID: 1903592909}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2981,23 +2974,6 @@ Transform:
   - {fileID: 1247854746}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1903592902
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1903592899}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bab101f401cb9740af2ab1bd516acde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 2849952391781889601, guid: 270bf703b4311074da4fed3ffd12ea1a, type: 3}
-  shootCooldown: 0.5
-  bulletsParent: {fileID: 1791864390}
-  bulletDamage: 5
-  bulletSpeed: 5
 --- !u!114 &1903592903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3132,6 +3108,36 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1
+--- !u!114 &1903592908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903592899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66fb0f3c08d60ee46a69a868851d8125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 0}
+  movement: {fileID: 0}
+  weaponManager: {fileID: 0}
+--- !u!114 &1903592909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903592899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43151d05ad226f848ab7dccf5518de5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allWeapons:
+  - {fileID: 1247854747}
+  - {fileID: 6536025}
 --- !u!1 &1927672074
 GameObject:
   m_ObjectHideFlags: 0

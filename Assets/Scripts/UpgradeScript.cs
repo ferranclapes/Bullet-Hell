@@ -11,12 +11,13 @@ public enum UpgradeType
     CureHealth,
     UpgradeHealth,
     Magnet,
-    UpgradeMagnet
+    UpgradeMagnet,
+    WeaponUpgrade
 }
 
 
 
-[CreateAssetMenu(fileName = "NewUpgrade", menuName = "Upgrade/Upgrade")]
+[CreateAssetMenu(fileName = "NewUpgrade", menuName = "Upgrades/General Upgrade")]
 public class UpgradeScript : ScriptableObject
 {
     public string upgradeName;
@@ -26,4 +27,5 @@ public class UpgradeScript : ScriptableObject
 
     public UpgradeType upgradeType;
     public float upgradePercentage;
+    public WeaponType weaponType;
 }
