@@ -5,6 +5,7 @@ using UnityEngine;
 
 public enum WeaponType
 {
+    None,
     Boomerang,
     Slingshot,
     SpikeBall

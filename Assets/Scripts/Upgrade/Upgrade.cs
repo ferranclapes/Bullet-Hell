@@ -28,4 +28,5 @@ public class Upgrade : ScriptableObject
     public UpgradeType upgradeType;
     public float upgradePercentage;
     public WeaponType weaponType;
+    public int maxLevel;
 }

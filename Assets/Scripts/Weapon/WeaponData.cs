@@ -23,5 +23,6 @@ public class SlingshotData : WeaponData
 [CreateAssetMenu(fileName = "BoomerangData", menuName = "Weapons/Boomerang")]
 public class BoomerangData : WeaponData
 {
+    public float returnTime;
     public List<BoomerangLevel> levels;
 }

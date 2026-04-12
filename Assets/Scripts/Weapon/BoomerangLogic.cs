@@ -17,7 +17,7 @@ public class BoomerangLogic : WeaponLogic
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer >= data.levels[currentLevel].shootCooldown)
+        if (timer >= data.levels[currentLevel].shootCooldown * Player.Instance.stats.cooldownPercentage / 100f)
         {
             StartCoroutine(Shoot(data.levels[currentLevel].projectileCount));
             timer = 0;
@@ -28,7 +28,7 @@ public class BoomerangLogic : WeaponLogic
     {
         BoomerangProjectile projectile = Instantiate(data.projectilePrefab, transform.position, Quaternion.identity).GetComponent<BoomerangProjectile>();
         projectile.transform.parent = transform;
-        projectile.Initiate(data.levels[currentLevel].damage, data.levels[currentLevel].speed);
+        projectile.Initiate(data.levels[currentLevel].damage, data.levels[currentLevel].speed, data.returnTime);
         yield return new WaitForSeconds(data.levels[currentLevel].projectileInterval);
         if (data.levels[currentLevel].projectileCount > 1)
         {
@@ -38,6 +38,7 @@ public class BoomerangLogic : WeaponLogic
 
     public override string GetWeaponLevelUpDescription()
     {
-        return data.levels[currentLevel+1].levelDescription;
+        if (!this.enabled) return data.levels[currentLevel].levelDescription;
+        else return data.levels[currentLevel+1].levelDescription;
     }
 }

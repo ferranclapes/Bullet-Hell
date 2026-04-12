@@ -6,15 +6,27 @@ public class PlayerStats : MonoBehaviour
 {
     private float health;
     private float maxHealth = 100f;
+    private float maxHealthPercentage = 100f;
+    
     private float xp = 0;
     private int currentLevel = 1;
     private int xpToNextLevel = 5;
     private int xpLastLevelUp = 0;
+    
     private bool haveMagnet = false;
     private float magnetRange = 1f;
     private CircleCollider2D magnetCollider;
+
+    [Header("Weapons Stats")]
+    public float damagePercentage = 100f;
+    public float speedPercentage = 100f;
+    public float cooldownPercentage = 100f;
+    public float areaPercentage = 100f;
+
     [SerializeField] private UIManager uiManager;
     [SerializeField] private LevelUpManager levelUpManager;
+
+    private Dictionary<string, int> activeUpgrades = new Dictionary<string, int>();
 
     void Start()
     {
@@ -80,15 +92,15 @@ public class PlayerStats : MonoBehaviour
     public void Heal(float healAmount)
     {
         health += healAmount;
-        if (health > maxHealth) health = maxHealth;
+        if (health > maxHealth * maxHealthPercentage / 100f) health = maxHealth * maxHealthPercentage / 100f;
         uiManager.UpdateHealth(health);
     }
 
     public void IncreaseMaxHealth(float percentage)
     {
-        int tempMaxHealth = (int)maxHealth;
-        maxHealth += maxHealth * (percentage/100);
-        health = health*(maxHealth / tempMaxHealth);
+        float tempHealthpercentage = health / (maxHealth * maxHealthPercentage / 100f);
+        maxHealthPercentage = maxHealthPercentage + percentage;
+        health = tempHealthpercentage * (maxHealth * maxHealthPercentage / 100f);
         uiManager.UpdateHealth(health);
     }
 
@@ -106,6 +118,25 @@ public class PlayerStats : MonoBehaviour
 
         magnetRange += magnetRange * (percentage/100);
         magnetCollider.radius = magnetRange;
+    }
+
+    public bool AddUpgrade(Upgrade upgrade)
+    {
+        if (activeUpgrades.ContainsKey(upgrade.upgradeName))activeUpgrades[upgrade.upgradeName]++;
+        else activeUpgrades.Add(upgrade.upgradeName, 1);
+
+        if (activeUpgrades[upgrade.upgradeName] >= upgrade.maxLevel)
+        {
+            activeUpgrades[upgrade.upgradeName] = upgrade.maxLevel;
+            return false;
+        }
+        else return true;
+    }
+
+    public bool CanAddUpgrade(Upgrade upgrade)
+    {
+        if (activeUpgrades.ContainsKey(upgrade.upgradeName)) return activeUpgrades[upgrade.upgradeName] < upgrade.maxLevel;
+        else return true;
     }
 
 }

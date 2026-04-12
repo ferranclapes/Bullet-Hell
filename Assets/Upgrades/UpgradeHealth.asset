@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: UpgradeHealth
   m_EditorClassIdentifier: 
   upgradeName: Increase Health
-  description: Increase your health by 15%.
+  description: Increase your health by 20%.
   icon: {fileID: 21300000, guid: bb779a66daa82b54084029087af145a0, type: 3}
-  weight: 1
+  weight: 90
   upgradeType: 5
-  upgradePercentage: 15
+  upgradePercentage: 20
+  weaponType: 0
+  maxLevel: 5

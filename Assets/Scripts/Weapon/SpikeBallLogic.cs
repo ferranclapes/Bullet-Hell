@@ -18,7 +18,7 @@ public class SpikeBallLogicScript : WeaponLogic
     {
         spawnTimer += Time.deltaTime;
 
-        if (spawnTimer >= data.levels[currentLevel].spawnCooldown)
+        if (spawnTimer >= data.levels[currentLevel].spawnCooldown * Player.Instance.stats.cooldownPercentage / 100f)
         {
             SpawnSpikeBall();
             spawnTimer = -data.levels[currentLevel].lifetime; //This way spawnInterval starts from the moment the spike balls dispawn
@@ -39,6 +39,7 @@ public class SpikeBallLogicScript : WeaponLogic
 
     public override string GetWeaponLevelUpDescription()
     {
-        return data.levels[currentLevel+1].levelDescription;
+        if (!this.enabled) return data.levels[currentLevel].levelDescription;
+        else return data.levels[currentLevel+1].levelDescription;
     }
 }

@@ -3132,6 +3132,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca619f8e44e729848aa19c31e7af9501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damagePercentage: 100
+  speedPercentage: 100
+  cooldownPercentage: 100
+  areaPercentage: 100
   uiManager: {fileID: 1927672075}
   levelUpManager: {fileID: 1556224685}
 --- !u!58 &1903592907

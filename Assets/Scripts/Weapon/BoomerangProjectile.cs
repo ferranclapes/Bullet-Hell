@@ -14,10 +14,13 @@ public class BoomerangProjectile : MonoBehaviour
     private Vector3 direction;
     private float timer = 0f;
 
-    public void Initiate(float dm, float sp)
+    public void Initiate(float dm, float sp, float rt)
     {
-        damage = dm;
-        speed = sp;
+        damage = dm * Player.Instance.stats.damagePercentage / 100f;
+        speed = sp * Player.Instance.stats.speedPercentage / 100f;
+        returnTime = rt;
+        accelerationTime = returnTime * 2f;
+        transform.localScale = transform.localScale * Player.Instance.stats.areaPercentage / 100f;
     }
 
     // Start is called before the first frame update
@@ -27,18 +30,16 @@ public class BoomerangProjectile : MonoBehaviour
         Transform nearestEnemy = FindNearestEnemy();
         direction = nearestEnemy != null ? (nearestEnemy.position - transform.position).normalized : transform.right;
 
-        accelerationTime = returnTime * 2f;
-
         rb.velocity = direction * speed;
-        rb.angularVelocity = 360f;
+        rb.angularVelocity = 360f * 3;
     }
 
     // Update is called once per frame
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer <= returnTime) rb.velocity = Vector2.Lerp(direction * speed, Vector2.zero, timer / returnTime);
-        else rb.velocity = Vector2.Lerp(Vector2.zero, direction * -speed, (timer - returnTime) / (accelerationTime - returnTime));
+        if (timer <= returnTime && timer >= returnTime/2) rb.velocity = Vector2.Lerp(direction * speed, Vector2.zero, (timer - returnTime/2) / (returnTime / 2));
+        else if (timer >= returnTime) rb.velocity = Vector2.Lerp(Vector2.zero, direction * -speed, (timer - returnTime) / (accelerationTime - returnTime));
         
 
     }

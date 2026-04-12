@@ -14,9 +14,10 @@ public class SlingshotProjectile : MonoBehaviour
 
     public void Initiate(float dm, float sp, int pier)
     {
-        damage = dm;
-        speed = sp;
+        damage = dm * Player.Instance.stats.damagePercentage / 100f;
+        speed = sp * Player.Instance.stats.speedPercentage / 100f;
         piercingCount = pier;
+        transform.localScale = transform.localScale * Player.Instance.stats.areaPercentage / 100f;
     }
     
     // Start is called before the first frame update

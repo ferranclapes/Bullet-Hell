@@ -50,6 +50,12 @@ public class UpgradeManager : MonoBehaviour
                 index = pool.Count - 1; // Fallback to last item
             }
             
+            if (!playerStatsScript.CanAddUpgrade(pool[index]))
+            {
+                i--;
+                pool.RemoveAt(index);
+                continue;
+            }
             selectedUpgrades.Add(pool[index]);
             pool.RemoveAt(index);
         }

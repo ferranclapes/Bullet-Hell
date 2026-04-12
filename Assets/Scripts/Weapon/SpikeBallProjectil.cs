@@ -9,14 +9,22 @@ public class SpikeBallProjectile : MonoBehaviour
     private float lifetime;
     private float radius;
     private float currentAngle;
+
+    private float maxRadius = 2.5f;
     // Start is called before the first frame update
     
     public void Initiate(float dam, float sp, float lt, float rad, int index, int total)
     {
-        damage = dam;
-        speed = sp;
+        damage = dam * Player.Instance.stats.damagePercentage / 100f;
+        speed = sp * Player.Instance.stats.speedPercentage / 100f;
         lifetime = lt;
-        radius = rad;
+        radius = rad * Player.Instance.stats.areaPercentage / 100f;
+        if (radius > maxRadius)
+        {
+            float difference = radius - maxRadius;
+            radius = maxRadius;
+            transform.localScale = transform.localScale + new Vector3(difference, difference);
+        }
 
         currentAngle = index * 2f * Mathf.PI / total;
     }

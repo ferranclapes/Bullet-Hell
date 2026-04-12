@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b66eae45cf1ba7644a64ff33d98ccc06, type: 3}
   m_Name: PlayerSpeed
   m_EditorClassIdentifier: 
-  upgradeName: Movement Speed
-  description: Increase your movement speed by 20%
+  upgradeName: Boots
+  description: Increase your movement speed by 10%
   icon: {fileID: 21300000, guid: 9213da47ae9d60d47babc070fea05299, type: 3}
-  weight: 1
+  weight: 50
   upgradeType: 3
-  upgradePercentage: 20
+  upgradePercentage: 10
+  weaponType: 0
+  maxLevel: 5

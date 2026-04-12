@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UI;
 using UnityEngine;
 
 public class SlingshotLogic : WeaponLogic
@@ -15,7 +16,7 @@ public class SlingshotLogic : WeaponLogic
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer >= data.levels[currentLevel].shootCooldown)
+        if (timer >= data.levels[currentLevel].shootCooldown * Player.Instance.stats.cooldownPercentage / 100f)
         {
             StartCoroutine(Shoot(data.levels[currentLevel].projectileCount));
             timer = 0;
@@ -44,6 +45,7 @@ public class SlingshotLogic : WeaponLogic
 
     public override string GetWeaponLevelUpDescription()
     {
-        return data.levels[currentLevel+1].levelDescription;
+        if (!this.enabled) return data.levels[currentLevel].levelDescription;
+        else return data.levels[currentLevel+1].levelDescription;
     }
 }
