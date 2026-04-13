@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpikeBallData
   weaponName: Spike Ball
   projectilePrefab: {fileID: 4763427141988111147, guid: ae219a82ddc05ca4c8eef75184a4c366, type: 3}
+  knockback: 1
   levels:
   - levelDescription: A spike ball that orbits arround you and deals damage to the
       enemies

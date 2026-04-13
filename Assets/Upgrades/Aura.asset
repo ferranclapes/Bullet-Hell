@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b66eae45cf1ba7644a64ff33d98ccc06, type: 3}
-  m_Name: Magnet
+  m_Name: Aura
   m_EditorClassIdentifier: 
-  upgradeName: Magnet
-  description: Pick up objects from further away
-  icon: {fileID: 21300000, guid: f6bdbfe8b250fbe479c30e2db7765c86, type: 3}
-  weight: 100
-  upgradeType: 10
-  upgradePercentage: 25
-  weaponType: 0
-  maxLevel: 1
+  upgradeName: Aura
+  description: Generic description
+  icon: {fileID: 21300000, guid: 26f47d717f7f5a0428ed8959da4de2a7, type: 3}
+  weight: 70
+  upgradeType: 11
+  upgradePercentage: 0
+  weaponType: 4
+  maxLevel: 8

@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b66eae45cf1ba7644a64ff33d98ccc06, type: 3}
-  m_Name: CureHealth
+  m_Name: Armour
   m_EditorClassIdentifier: 
-  upgradeName: Cure
-  description: Regain 35 points of health
-  icon: {fileID: 21300000, guid: 27a09766a08ebeb43be2aa79c75019ae, type: 3}
-  weight: 1
-  upgradeType: 4
-  upgradePercentage: 35
+  upgradeName: Armour
+  description: Reduces damage recieved by 1.
+  icon: {fileID: 21300000, guid: f83cb46c18d6f10418c6ffc72a5da3cb, type: 3}
+  weight: 100
+  upgradeType: 7
+  upgradePercentage: 1
+  weaponType: 0
+  maxLevel: 0

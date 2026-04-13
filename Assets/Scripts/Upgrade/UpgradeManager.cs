@@ -66,22 +66,46 @@ public class UpgradeManager : MonoBehaviour
     {
         Upgrade selectedUpgrade = selectedUpgrades[index];
 
+        bool upgradeAdded = playerStatsScript.AddUpgrade(selectedUpgrade);
+        if (!upgradeAdded) {
+            Debug.LogError("Upgrade " + selectedUpgrade.upgradeName + " is already at max level.");
+            return;
+        };
+
         switch (selectedUpgrade.upgradeType)
         {
-            case UpgradeType.PlayerSpeed:
-                playerMovementScript.IncreasePlayerSpeed(selectedUpgrade.upgradePercentage);
+            case UpgradeType.Damage:
+                playerStatsScript.damagePercentage += selectedUpgrade.upgradePercentage;
                 break;
-            case UpgradeType.CureHealth:
-                playerStatsScript.Heal(selectedUpgrade.upgradePercentage);
+            case UpgradeType.ProjectileSpeed:
+                playerStatsScript.projectileSpeedPercentage += selectedUpgrade.upgradePercentage;
+                break;
+            case UpgradeType.Cooldown:
+                playerStatsScript.cooldownPercentage -= selectedUpgrade.upgradePercentage;
+                break;
+            case UpgradeType.Area:
+                playerStatsScript.areaPercentage += selectedUpgrade.upgradePercentage;
+                break;
+            case UpgradeType.Duration:
+                playerStatsScript.durationPercentage += selectedUpgrade.upgradePercentage;
+                break;
+            case UpgradeType.PlayerSpeed:
+                playerMovementScript.ChangeSpeed(selectedUpgrade.upgradePercentage);
+                break;
+            case UpgradeType.RecoverHealth:
+                playerStatsScript.IncreaseRecoveryRate(selectedUpgrade.upgradePercentage);
+                break;
+            case UpgradeType.Armor:
+                playerStatsScript.IncreaseArmour(selectedUpgrade.upgradePercentage);
+                break;
+            case UpgradeType.Experience:
+                playerStatsScript.IncreaseXPPercentage(selectedUpgrade.upgradePercentage);
                 break;
             case UpgradeType.UpgradeHealth:
                 playerStatsScript.IncreaseMaxHealth(selectedUpgrade.upgradePercentage);
                 break;
             case UpgradeType.Magnet:
                 GotMagnet(selectedUpgrade);
-                break;
-            case UpgradeType.UpgradeMagnet:
-                playerStatsScript.IncreaseMagnetRange(selectedUpgrade.upgradePercentage);
                 break;
             case UpgradeType.WeaponUpgrade:
                 weaponManager.UpgradeWeapon(selectedUpgrade.weaponType);
@@ -92,13 +116,9 @@ public class UpgradeManager : MonoBehaviour
 
     private void GotMagnet(Upgrade magnetUpgrade)
     {
-        playerStatsScript.ActivateMagnet(magnetUpgrade.upgradePercentage);
-
-        magnetUpgrade.weight = 0f;
-
-        foreach (Upgrade upgrade in allUpgrades)
+        if (!playerStatsScript.ActivateMagnet(magnetUpgrade.upgradePercentage))
         {
-            if (upgrade.upgradeType == UpgradeType.UpgradeMagnet) upgrade.weight = 1f;
+            playerStatsScript.IncreaseMagnetRange(magnetUpgrade.upgradePercentage);
         }
     }
     

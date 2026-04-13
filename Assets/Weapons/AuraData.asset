@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: AuraData
+  m_EditorClassIdentifier: Assembly-CSharp::AuraData
+  weaponName: Aura
+  projectilePrefab: {fileID: 0}
+  knockback: 0
+  levels:
+  - levelDescription: Damages nearby enemies
+    damage: 5
+    areaUpgradePercentage: 0
+    cooldown: 1.3
+  - levelDescription: L'area base augmenta en 40% i el dany base augmenta en 2
+    damage: 7
+    areaUpgradePercentage: 40
+    cooldown: 1.3
+  - levelDescription: El cooldown es redueix en 0.1 i el dany base augmenta en 1
+    damage: 8
+    areaUpgradePercentage: 0
+    cooldown: 1.2
+  - levelDescription: L'area base augmenta en 20% i el dany base augmenta en 1
+    damage: 9
+    areaUpgradePercentage: 20
+    cooldown: 1.2
+  - levelDescription: El cooldown es redueix en 0.1 i el dany base augmenta en 2
+    damage: 11
+    areaUpgradePercentage: 0
+    cooldown: 1.1
+  - levelDescription: L'area base augmenta en 20% i el dany base augmenta en 1
+    damage: 12
+    areaUpgradePercentage: 20
+    cooldown: 1.1
+  - levelDescription: El cooldown es redueix en 0.1 i el dany base augmenta en 1
+    damage: 13
+    areaUpgradePercentage: 0
+    cooldown: 1
+  - levelDescription: L'area base augmenta en 20% i el dany base augmenta en 2
+    damage: 15
+    areaUpgradePercentage: 20
+    cooldown: 1

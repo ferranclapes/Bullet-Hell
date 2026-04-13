@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BoomerangData
   weaponName: Boomerang
   projectilePrefab: {fileID: 6419852288085505977, guid: 5f5f32a5ab4afdc4497ff147436774c0, type: 3}
+  knockback: 1
   returnTime: 1.5
   levels:
   - levelDescription: Shoots a boomerang to the nearst enemy. After a short while,

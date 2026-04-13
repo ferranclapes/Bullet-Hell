@@ -6,6 +6,7 @@ public class BoomerangProjectile : MonoBehaviour
 {
     private float damage;
     private float speed;
+    private float knockback;
     [SerializeField] private float lifetime;
     [SerializeField] private float returnTime;
     private float accelerationTime;
@@ -14,11 +15,12 @@ public class BoomerangProjectile : MonoBehaviour
     private Vector3 direction;
     private float timer = 0f;
 
-    public void Initiate(float dm, float sp, float rt)
+    public void Initiate(float dm, float sp, float rt, float kb)
     {
         damage = dm * Player.Instance.stats.damagePercentage / 100f;
-        speed = sp * Player.Instance.stats.speedPercentage / 100f;
+        speed = sp * Player.Instance.stats.projectileSpeedPercentage / 100f;
         returnTime = rt;
+        knockback = kb;
         accelerationTime = returnTime * 2f;
         transform.localScale = transform.localScale * Player.Instance.stats.areaPercentage / 100f;
     }
@@ -51,7 +53,7 @@ public class BoomerangProjectile : MonoBehaviour
             EnemyLogic enemy = collision.GetComponent<EnemyLogic>();
             if (enemy != null)
             {
-                enemy.TakeDamage(damage);
+                enemy.TakeDamage(damage, knockback);
             }
         }
     }

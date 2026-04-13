@@ -6,6 +6,7 @@ public class SpikeBallProjectile : MonoBehaviour
 {
     private float damage;
     private float speed;
+    public float knockback;
     private float lifetime;
     private float radius;
     private float currentAngle;
@@ -13,12 +14,13 @@ public class SpikeBallProjectile : MonoBehaviour
     private float maxRadius = 2.5f;
     // Start is called before the first frame update
     
-    public void Initiate(float dam, float sp, float lt, float rad, int index, int total)
+    public void Initiate(float dam, float sp, float lt, float rad, int index, int total, float kb)
     {
         damage = dam * Player.Instance.stats.damagePercentage / 100f;
-        speed = sp * Player.Instance.stats.speedPercentage / 100f;
+        speed = sp * Player.Instance.stats.projectileSpeedPercentage / 100f;
         lifetime = lt;
         radius = rad * Player.Instance.stats.areaPercentage / 100f;
+        knockback = kb;
         if (radius > maxRadius)
         {
             float difference = radius - maxRadius;
@@ -49,7 +51,7 @@ public class SpikeBallProjectile : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            collision.GetComponent<EnemyLogic>().TakeDamage(damage);
+            collision.GetComponent<EnemyLogic>().TakeDamage(damage, knockback);
         }
     }
 }

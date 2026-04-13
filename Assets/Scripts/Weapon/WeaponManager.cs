@@ -8,7 +8,8 @@ public enum WeaponType
     None,
     Boomerang,
     Slingshot,
-    SpikeBall
+    SpikeBall,
+    Aura
 
 }
 public class WeaponManager : MonoBehaviour

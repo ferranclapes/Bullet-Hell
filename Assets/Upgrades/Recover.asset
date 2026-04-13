@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b66eae45cf1ba7644a64ff33d98ccc06, type: 3}
-  m_Name: Magnet
+  m_Name: Recover
   m_EditorClassIdentifier: 
-  upgradeName: Magnet
-  description: Pick up objects from further away
-  icon: {fileID: 21300000, guid: f6bdbfe8b250fbe479c30e2db7765c86, type: 3}
-  weight: 100
-  upgradeType: 10
-  upgradePercentage: 25
+  upgradeName: Recover
+  description: Your health recovers 0.2 per second
+  icon: {fileID: 21300000, guid: 27a09766a08ebeb43be2aa79c75019ae, type: 3}
+  weight: 90
+  upgradeType: 6
+  upgradePercentage: 0.2
   weaponType: 0
-  maxLevel: 1
+  maxLevel: 0

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyLogic : MonoBehaviour
@@ -7,6 +8,9 @@ public class EnemyLogic : MonoBehaviour
     private EnemyData enemyData;
     private float currentHealth;
     private float currentSpeed;
+    private bool isKnockedback = false;
+    private bool inAura = false;
+
     [SerializeField] private GameObject dropPrefab;
     private Transform pickableParent;
     private Transform playerTransform;
@@ -56,22 +60,39 @@ public class EnemyLogic : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector2 direction = (playerTransform.position - transform.position);
-        if (direction.magnitude > 15f)
+        if (!isKnockedback)
         {
-            EnemyManager.enemies.Remove(this);
-            Destroy(gameObject);
-            return;
+            Vector2 direction = (playerTransform.position - transform.position);
+            if (direction.magnitude > 15f)
+            {
+                EnemyManager.enemies.Remove(this);
+                Destroy(gameObject);
+                return;
+            }
+            direction.Normalize();
+            rb.velocity = direction * currentSpeed;
         }
-        direction.Normalize();
-        rb.velocity = direction * currentSpeed;
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage,float knockback)
     {
         currentHealth -= damage;
         DamageText damageText = Instantiate(damageTextPrefab, transform.position, Quaternion.identity).GetComponent<DamageText>();
         damageText.SetDamageText(damage);
+        Vector2 knockbackDirection = (transform.position - playerTransform.position).normalized;
+        rb.velocity = Vector2.zero;
+        rb.AddForce(knockbackDirection * knockback, ForceMode2D.Impulse);
+        if(knockback != 0)
+        {
+            isKnockedback = true;
+            StartCoroutine(ResetKnockback());
+        }
+    }
+
+    private IEnumerator ResetKnockback()
+    {
+        yield return new WaitForSeconds(0.2f);
+        isKnockedback = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -81,6 +102,31 @@ public class EnemyLogic : MonoBehaviour
             other.GetComponent<PlayerStats>().TakeDamage(enemyData.damage);
             EnemyManager.enemies.Remove(this);
             Destroy(gameObject);
+        }
+        if (other.CompareTag("Aura"))
+        {
+            inAura = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Aura"))
+        {
+            inAura = false;
+        }
+    }
+
+    public void TakeDamageByAura(float damage, float cooldown)
+    {
+        StartCoroutine(AuraCoroutine(damage, cooldown));
+    }
+    private IEnumerator AuraCoroutine(float damage, float cooldown)
+    {
+        while (inAura)
+        {
+            TakeDamage(damage,0f);
+            yield return new WaitForSeconds(cooldown);
         }
     }
 

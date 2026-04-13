@@ -37,3 +37,12 @@ public class BoomerangLevel
     public float projectileInterval;
     public float shootCooldown;
 }
+
+[System.Serializable]
+public class AuraLevel
+{
+    [TextArea] public string levelDescription;
+    public float damage;
+    public float areaUpgradePercentage;
+    public float cooldown;
+}

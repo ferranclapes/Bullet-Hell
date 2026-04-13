@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b66eae45cf1ba7644a64ff33d98ccc06, type: 3}
-  m_Name: UpgradeHealth
+  m_Name: Wallet
   m_EditorClassIdentifier: 
-  upgradeName: Increase Health
-  description: Increase your health by 20%.
-  icon: {fileID: 21300000, guid: bb779a66daa82b54084029087af145a0, type: 3}
-  weight: 90
-  upgradeType: 5
-  upgradePercentage: 20
+  upgradeName: Wallet
+  description: You gain 8% more experience
+  icon: {fileID: 21300000, guid: 4676f9b31951ea041bc5ea67c192a265, type: 3}
+  weight: 70
+  upgradeType: 8
+  upgradePercentage: 8
   weaponType: 0
-  maxLevel: 5
+  maxLevel: 0

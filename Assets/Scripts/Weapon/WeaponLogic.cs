@@ -7,7 +7,7 @@ public abstract class WeaponLogic : MonoBehaviour
     public WeaponType weaponType;
     public int currentLevel = 0;
     public abstract string GetWeaponLevelUpDescription();
-    public void UpgradeWeapon()
+    public virtual void UpgradeWeapon()
     {
         currentLevel++;
     }

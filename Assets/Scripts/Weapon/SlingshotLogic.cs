@@ -35,7 +35,7 @@ public class SlingshotLogic : WeaponLogic
 
         SlingshotProjectile projectile = Instantiate(data.projectilePrefab, transform.position, rotation).GetComponent<SlingshotProjectile>();
         projectile.transform.parent = transform;
-        projectile.Initiate(data.levels[currentLevel].damage, data.levels[currentLevel].speed, data.levels[currentLevel].piercingCount);
+        projectile.Initiate(data.levels[currentLevel].damage, data.levels[currentLevel].speed, data.levels[currentLevel].piercingCount, data.knockback);
         yield return new WaitForSeconds(data.levels[currentLevel].projectileInverval);
         if (projectilesLeft > 1)
         {

@@ -6,17 +6,19 @@ public class SlingshotProjectile : MonoBehaviour
 {
     private float speed;
     private float damage;
+    private float knockback;
     private int piercingCount;
 
     private float lifeTime = 5f;
 
     private Rigidbody2D rb;
 
-    public void Initiate(float dm, float sp, int pier)
+    public void Initiate(float dm, float sp, int pier, float kb)
     {
         damage = dm * Player.Instance.stats.damagePercentage / 100f;
-        speed = sp * Player.Instance.stats.speedPercentage / 100f;
+        speed = sp * Player.Instance.stats.projectileSpeedPercentage / 100f;
         piercingCount = pier;
+        knockback = kb;
         transform.localScale = transform.localScale * Player.Instance.stats.areaPercentage / 100f;
     }
     
@@ -46,7 +48,7 @@ public class SlingshotProjectile : MonoBehaviour
             if (enemy != null)
             {
                 piercingCount--;
-                enemy.TakeDamage(damage);
+                enemy.TakeDamage(damage, knockback);
                 if (piercingCount < 0) Destroy(gameObject);
             }
             else Destroy(gameObject);

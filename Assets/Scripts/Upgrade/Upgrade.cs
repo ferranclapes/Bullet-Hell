@@ -4,14 +4,17 @@ using UnityEngine;
 
 public enum UpgradeType
 {
-    BulletDamage,
-    BulletSpeed,
-    ShootingSpeed,
+    Damage,
+    ProjectileSpeed,
+    Cooldown,
+    Area,
+    Duration,
     PlayerSpeed,
-    CureHealth,
+    RecoverHealth,
+    Armor,
+    Experience,
     UpgradeHealth,
     Magnet,
-    UpgradeMagnet,
     WeaponUpgrade
 }
 

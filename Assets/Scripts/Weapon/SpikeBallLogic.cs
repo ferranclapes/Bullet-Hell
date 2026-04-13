@@ -33,7 +33,7 @@ public class SpikeBallLogicScript : WeaponLogic
         {
             SpikeBallProjectile spikeBall = Instantiate(data.projectilePrefab, spawnPosition, Quaternion.identity).GetComponent<SpikeBallProjectile>();
             spikeBall.transform.parent = transform;
-            spikeBall.Initiate(data.levels[currentLevel].damage, data.levels[currentLevel].speed, data.levels[currentLevel].lifetime, data.levels[currentLevel].spawnRadius, i, data.levels[currentLevel].projectileCount);
+            spikeBall.Initiate(data.levels[currentLevel].damage, data.levels[currentLevel].speed, data.levels[currentLevel].lifetime, data.levels[currentLevel].spawnRadius, i, data.levels[currentLevel].projectileCount, data.knockback);
         }
     }
 

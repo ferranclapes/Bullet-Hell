@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 3f;
+    private float speedPercentage = 100f;
     private Rigidbody2D rb;
 
     private float horizontal;
@@ -25,11 +26,11 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         Vector2 movement = new Vector2(horizontal, vertical).normalized;
-        rb.velocity = movement * moveSpeed;
+        rb.velocity = movement * moveSpeed * (speedPercentage / 100f);
     }
 
-    public void IncreasePlayerSpeed(float percentage)
+    public void ChangeSpeed(float percentage)
     {
-        moveSpeed += moveSpeed * (percentage / 100f);
+        speedPercentage += percentage;
     }
 }

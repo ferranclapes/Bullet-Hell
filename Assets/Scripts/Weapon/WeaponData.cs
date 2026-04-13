@@ -6,6 +6,7 @@ public abstract class WeaponData : ScriptableObject
 {
     public string weaponName;
     public GameObject projectilePrefab;
+    public float knockback;
 }
 
 [CreateAssetMenu(fileName = "SpikeBallData", menuName = "Weapons/Spike Ball")]
@@ -25,4 +26,10 @@ public class BoomerangData : WeaponData
 {
     public float returnTime;
     public List<BoomerangLevel> levels;
+}
+
+[CreateAssetMenu(fileName = "AuraData", menuName = "Weapons/Aura")]
+public class AuraData : WeaponData
+{
+    public List<AuraLevel> levels;
 }

@@ -7,11 +7,14 @@ public class PlayerStats : MonoBehaviour
     private float health;
     private float maxHealth = 100f;
     private float maxHealthPercentage = 100f;
+    private float recoveryRate = 0f;
+    private float armour = 0f;
     
     private float xp = 0;
     private int currentLevel = 1;
     private int xpToNextLevel = 5;
     private int xpLastLevelUp = 0;
+    private float xpPercentage = 100f;
     
     private bool haveMagnet = false;
     private float magnetRange = 1f;
@@ -19,10 +22,10 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Weapons Stats")]
     public float damagePercentage = 100f;
-    public float speedPercentage = 100f;
+    public float projectileSpeedPercentage = 100f;
     public float cooldownPercentage = 100f;
     public float areaPercentage = 100f;
-
+    public float durationPercentage = 100f;
     [SerializeField] private UIManager uiManager;
     [SerializeField] private LevelUpManager levelUpManager;
 
@@ -39,6 +42,10 @@ public class PlayerStats : MonoBehaviour
 
         health = maxHealth;
         uiManager.UpdateHealth(health);
+        if (recoveryRate != 0)
+        {
+            StartCoroutine(RecoverHealth());
+        }
     }
 
     
@@ -52,6 +59,8 @@ public class PlayerStats : MonoBehaviour
     }
     public void TakeDamage(float damage)
     {
+        damage = damage - armour;
+        if (damage < 0) damage = 0;
         health -= damage;
         uiManager.UpdateHealth(health);
         //Todo: Implement Game Over
@@ -62,7 +71,7 @@ public class PlayerStats : MonoBehaviour
         switch (type)
         {
             case PickableType.XP:
-                xp += value;
+                xp += value * (xpPercentage / 100f);
                 uiManager.UpdateXP(xp - xpLastLevelUp, xpToNextLevel);
                 if (xp >= xpToNextLevel)
                 {
@@ -89,11 +98,24 @@ public class PlayerStats : MonoBehaviour
     {
         return currentLevel;
     }
+
+    public void IncreaseXPPercentage(float percentage)
+    {
+        xpPercentage += percentage;
+    }
     public void Heal(float healAmount)
     {
         health += healAmount;
         if (health > maxHealth * maxHealthPercentage / 100f) health = maxHealth * maxHealthPercentage / 100f;
         uiManager.UpdateHealth(health);
+    }
+    private IEnumerator RecoverHealth()
+    {
+        while (recoveryRate != 0)
+        {
+            yield return new WaitForSeconds(1f);
+            Heal(recoveryRate);
+        }
     }
 
     public void IncreaseMaxHealth(float percentage)
@@ -104,12 +126,29 @@ public class PlayerStats : MonoBehaviour
         uiManager.UpdateHealth(health);
     }
 
-    public void ActivateMagnet(float range)
+    public void IncreaseRecoveryRate(float amount)
     {
+        recoveryRate += amount;
+        if (recoveryRate > 0 && !IsInvoking(nameof(RecoverHealth)))
+        {
+            StartCoroutine(RecoverHealth());
+        }
+    }
+
+    public void IncreaseArmour(float amount)
+    {
+        armour += amount;
+    }
+
+    public bool ActivateMagnet(float range)
+    {
+        if (haveMagnet) return false;
+
         haveMagnet = true;
         magnetRange = range;
         magnetCollider.radius = magnetRange;
         magnetCollider.enabled = true;
+        return true;
     }
 
     public void IncreaseMagnetRange(float percentage)
@@ -122,15 +161,31 @@ public class PlayerStats : MonoBehaviour
 
     public bool AddUpgrade(Upgrade upgrade)
     {
-        if (activeUpgrades.ContainsKey(upgrade.upgradeName))activeUpgrades[upgrade.upgradeName]++;
-        else activeUpgrades.Add(upgrade.upgradeName, 1);
-
-        if (activeUpgrades[upgrade.upgradeName] >= upgrade.maxLevel)
+        if (upgrade.upgradeType == UpgradeType.WeaponUpgrade)
         {
-            activeUpgrades[upgrade.upgradeName] = upgrade.maxLevel;
-            return false;
+            if (activeUpgrades.ContainsKey(upgrade.weaponType.ToString()))activeUpgrades[upgrade.weaponType.ToString()]++;
+            else activeUpgrades.Add(upgrade.weaponType.ToString(), 1);
+
+            if (activeUpgrades[upgrade.weaponType.ToString()] >= upgrade.maxLevel)
+            {
+                activeUpgrades[upgrade.upgradeName] = upgrade.maxLevel;
+                return false;
+            }
+            else return true;
         }
-        else return true;
+        else
+        {
+            if (activeUpgrades.ContainsKey(upgrade.upgradeName))activeUpgrades[upgrade.upgradeName]++;
+            else activeUpgrades.Add(upgrade.upgradeName, 1);
+
+            if (activeUpgrades[upgrade.upgradeName] >= upgrade.maxLevel)
+            {
+                activeUpgrades[upgrade.upgradeName] = upgrade.maxLevel;
+                return false;
+            }
+            else return true;
+        }
+
     }
 
     public bool CanAddUpgrade(Upgrade upgrade)

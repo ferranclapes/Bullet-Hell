@@ -28,7 +28,7 @@ public class BoomerangLogic : WeaponLogic
     {
         BoomerangProjectile projectile = Instantiate(data.projectilePrefab, transform.position, Quaternion.identity).GetComponent<BoomerangProjectile>();
         projectile.transform.parent = transform;
-        projectile.Initiate(data.levels[currentLevel].damage, data.levels[currentLevel].speed, data.returnTime);
+        projectile.Initiate(data.levels[currentLevel].damage, data.levels[currentLevel].speed, data.returnTime, data.knockback);
         yield return new WaitForSeconds(data.levels[currentLevel].projectileInterval);
         if (data.levels[currentLevel].projectileCount > 1)
         {
