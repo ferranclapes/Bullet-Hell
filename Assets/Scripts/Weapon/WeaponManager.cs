@@ -26,7 +26,7 @@ public class WeaponManager : MonoBehaviour
     public string GetLevelUpDescription(WeaponType weaponType)
     {
         if (weaponDictionary.ContainsKey(weaponType)) return weaponDictionary[weaponType].GetWeaponLevelUpDescription();
-        else Debug.LogError("Weapon not found");
+        else Debug.LogError("Weapon not found: " + weaponType);
         return "";
     }
 

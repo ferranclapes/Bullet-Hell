@@ -9,9 +9,6 @@ public class EnemyData : ScriptableObject
     public string enemyName;
     public GameObject prefab;
 
-    [Header("Spawn Settings")]
-    public int spawnWeight;
-
     [Header("Base Stats")]
     public float maxHealth;
     public bool healthToLevel;

@@ -54,7 +54,7 @@ public class EnemySpawner : MonoBehaviour
         int totalWeight = 0;
         foreach(EnemyData enemy in enemyPool)
         {
-            totalWeight += enemy.spawnWeight;
+            //totalWeight += enemy.spawnWeight;
         }
 
         if (totalWeight == 0) return null;
@@ -62,11 +62,11 @@ public class EnemySpawner : MonoBehaviour
         int randomWeight = Random.Range(0, totalWeight);
         foreach(EnemyData enemy in enemyPool)
         {
-            if (randomWeight < enemy.spawnWeight)
+            /*if (randomWeight < enemy.spawnWeight)
             {
                 return enemy;
             }
-            randomWeight -= enemy.spawnWeight;
+            randomWeight -= enemy.spawnWeight;*/
         }
         return null;
     }

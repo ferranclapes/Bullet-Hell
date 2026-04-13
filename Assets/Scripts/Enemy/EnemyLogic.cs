@@ -63,7 +63,7 @@ public class EnemyLogic : MonoBehaviour
         if (!isKnockedback)
         {
             Vector2 direction = (playerTransform.position - transform.position);
-            if (direction.magnitude > 15f)
+            if (direction.magnitude > 22f)
             {
                 EnemyManager.enemies.Remove(this);
                 Destroy(gameObject);

@@ -15,7 +15,8 @@ MonoBehaviour:
   enemyName: 2
   prefab: {fileID: 7269093994251834465, guid: fb86a7c7b57a3354293403a7d0b0cf06, type: 3}
   spawnWeight: 1
-  maxHealth: 15
+  maxHealth: 10
+  healthToLevel: 0
   moveSpeed: 1
   damage: 10
-  xpToDrop: 2
+  xpToDrop: 1

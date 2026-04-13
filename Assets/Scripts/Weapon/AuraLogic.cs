@@ -7,17 +7,18 @@ public class AuraLogic : WeaponLogic
     [SerializeField] private AuraData data;
     private float areaPercentage = 100f;
     private Vector3 originalScale;
+
+    private SpriteRenderer spriteRenderer;
+    private CircleCollider2D circleCollider;
     // Start is called before the first frame update
     void Start()
     {
         weaponType = WeaponType.Aura;
         originalScale = transform.localScale;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        circleCollider = GetComponent<CircleCollider2D>();
+        spriteRenderer.enabled = true;
+        circleCollider.enabled = true;
     }
     public override void UpgradeWeapon()
     {
